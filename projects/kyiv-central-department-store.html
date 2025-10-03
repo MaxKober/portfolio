@@ -1,1 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{PROJECT_NAME}} — Portfolio</title>
+  <meta name="description" content="Case study page for {{PROJECT_NAME}}" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1630;          /* deep blue */
+      --fg:#e9eefc;          /* near white */
+      --accent:#ffd251;      /* bright yellow */
+      --muted:#8ea0c6;
+      --card:#111d3d;
+      --border:#2a3866;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+    a{color:var(--accent);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1000px;margin:0 auto;padding:24px}
+    header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:24px}
+    header .crumbs{font-size:14px;color:var(--muted)}
+    header .crumbs a{color:var(--muted)}
+    .hero{background:linear-gradient(180deg,rgba(255,210,81,0.15),rgba(255,210,81,0));border:1px solid var(--border);border-radius:16px;padding:24px;margin-bottom:24px}
+    .title{font-size:28px;font-weight:700;margin:0 0 6px}
+    .subtitle{font-size:16px;color:var(--muted);margin:0}
+    .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    @media (max-width:900px){.grid{grid-template-columns:1fr;}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}
+    h2{font-size:18px;margin:0 0 12px}
+    .meta{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .meta .item{padding:12px;border:1px dashed var(--border);border-radius:12px}
+    .label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+    .value{font-weight:600}
+    .prose p{margin:0 0 10px}
+    ul{margin:0 0 0 18px}
+    footer{margin:32px 0 12px;color:var(--muted);font-size:13px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:#0d1b3f}
+    .tags{display:flex;flex-wrap:wrap;gap:8px}
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+    .gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
+    .muted{color:var(--muted)}
+    .btn{display:inline-block;background:var(--accent);color:#0b0b0b;padding:10px 14px;border-radius:10px;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="crumbs">← <a href="../index.html">Portfolio</a> / <span class="muted">{{PROJECT_NAME}}</span></div>
+      <a class="btn" href="https://github.com/{{YOUR_GITHUB_USERNAME}}/{{REPO_NAME}}/edit/main/projects/{{SLUG}}.html">Edit this page</a>
+    </header>
 
+    <!-- HERO / SUMMARY -->
+    <section class="hero">
+      <h1 class="title">{{PROJECT_NAME}}</h1>
+      <p class="subtitle">{{SECTOR}} • {{SERVICE}} • {{CITY_COUNTRY}}</p>
+      <div class="tags" style="margin-top:10px">
+        <span class="badge">{{DELIVERY_MODEL}}</span>
+        <span class="badge">Budget: {{BUDGET}}</span>
+        <span class="badge">Size: {{SIZE}}</span>
+        <span class="badge">Status: {{STATUS}}</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <!-- LEFT COLUMN: Narrative -->
+      <div class="card prose">
+        <h2>Overview</h2>
+        <p><strong>Client:</strong> {{CLIENT_NAME}}</p>
+        <p>{{SHORT_BLURB}}</p>
+        <h2 style="margin-top:16px">Scope of Work</h2>
+        <ul>
+          <li>{{SCOPE_ITEM_1}}</li>
+          <li>{{SCOPE_ITEM_2}}</li>
+          <li>{{SCOPE_ITEM_3}}</li>
+        </ul>
+        <h2 style="margin-top:16px">Challenge</h2>
+        <p>{{CHALLENGE_TEXT}}</p>
+        <h2 style="margin-top:16px">Solution</h2>
+        <p>{{SOLUTION_TEXT}}</p>
+        <h2 style="margin-top:16px">Result</h2>
+        <p>{{RESULT_TEXT}}</p>
+      </div>
+
+      <!-- RIGHT COLUMN: Meta / Facts -->
+      <div class="card">
+        <h2>Project Facts</h2>
+        <div class="meta">
+          <div class="item"><span class="label">Address</span><span class="value">{{ADDRESS}}</span></div>
+          <div class="item"><span class="label">Client</span><span class="value">{{CLIENT_NAME}}</span></div>
+          <div class="item"><span class="label">Start</span><span class="value">{{START_DATE}}</span></div>
+          <div class="item"><span class="label">Finish</span><span class="value">{{FINISH_DATE}}</span></div>
+          <div class="item"><span class="label">Delivery</span><span class="value">{{DELIVERY_MODEL}}</span></div>
+          <div class="item"><span class="label">Budget</span><span class="value">{{BUDGET}}</span></div>
+          <div class="item"><span class="label">Size</span><span class="value">{{SIZE}}</span></div>
+        </div>
+        <h2 style="margin-top:16px">Downloads</h2>
+        <ul>
+          <li><a href="../assets/CV_MaksymKobylianskyi.pdf">CV (PDF)</a></li>
+          <li><a href="{{PROJECT_SHEET_URL}}">Project Sheet</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section style="margin-top:18px" class="card">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="../assets/images/{{SLUG}}-1.jpg" alt="{{PROJECT_NAME}} image 1" />
+        <img src="../assets/images/{{SLUG}}-2.jpg" alt="{{PROJECT_NAME}} image 2" />
+        <img src="../assets/images/{{SLUG}}-3.jpg" alt="{{PROJECT_NAME}} image 3" />
+      </div>
+      <p class="muted" style="margin-top:8px">Tip: You can upload images later. Missing images won’t break the page.</p>
+    </section>
+
+    <footer>
+      © <span id="y"></span> {{YOUR_NAME}} — <a href="../index.html">Back to portfolio</a>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
