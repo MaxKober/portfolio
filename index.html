@@ -1,77 +1,181 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Max Kober – Construction Project Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <title>Max Kober — Construction Project Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
   <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0b1630;
-      color: #e9eefc;
-      padding: 40px;
-      line-height: 1.6;
-    }
-    h1 {
-      font-size: 32px;
-      color: #ffd251;
-      margin-bottom: 12px;
-    }
-    h2 {
-      font-size: 20px;
-      color: #8ea0c6;
-      margin-top: 40px;
-    }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
-      background: #111d3d;
-      border: 1px solid #2a3866;
-      margin: 10px 0;
-      padding: 14px 20px;
-      border-radius: 10px;
-    }
-    a {
-      color: #ffd251;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .footer {
-      margin-top: 60px;
-      color: #8ea0c6;
-      font-size: 14px;
-    }
+    /* homepage-specific tweaks on top of style.css */
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}
+    .search{flex:1;min-width:220px}
+    .search input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:#0f1b3d;color:var(--fg)}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media (max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.cards{grid-template-columns:1fr}}
+    .card.project{cursor:pointer;transition:.12s transform}
+    .card.project:hover{transform:translateY(-2px)}
+    .pill{display:inline-block;padding:4px 8px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted);margin-right:6px}
+    .muted{color:var(--muted)}
+    .header-row{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .actions a{margin-left:8px}
   </style>
 </head>
 <body>
+  <div class="wrapper">
+    <div class="header-row">
+      <div>
+        <h1 class="title" style="margin:0">Construction Project Portfolio</h1>
+        <p class="subtitle" style="margin:6px 0 0">Selected projects across Design‑Build, EPC, CMAR, and GC models (Canada & Eastern Europe).</p>
+      </div>
+      <div class="actions">
+        <a class="btn" href="assets/files/CV_MaksymKobylianskyi.pdf">Download CV</a>
+        <a class="btn" href="https://www.linkedin.com/in/maksym-kobylianskyi" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
 
-  <h1>Max Kober – Construction Project Portfolio</h1>
-  <p>Explore selected projects I've managed or contributed to as a Project Manager, Construction Manager, and Owner-side Lead across Canada and Eastern Europe.</p>
+    <div class="toolbar">
+      <div class="search">
+        <input id="q" type="search" placeholder="Search projects by name, sector, delivery model, or location…" aria-label="Search projects">
+      </div>
+    </div>
 
-  <h2>Featured Projects</h2>
-  <ul>
-    <li><a href="projects/kyiv-central-department-store.html">Kyiv Central Department Store (Reconstruction)</a></li>
-    <li><a href="projects/port-city.html">Port City Shopping Mall</a></li>
-    <li><a href="projects/alliance-privilege.html">Alliance Privilege Tower</a></li>
-    <li><a href="projects/oakridge.html">Oakridge Centre – Fire Protection Projects</a></li>
-  </ul>
+    <div id="cards" class="cards">
+      <!-- Each project card uses data-* attributes for filtering -->
+      <a class="card project"
+         href="projects/kyiv-central-department-store.html"
+         data-name="Kyiv Central Department Store"
+         data-sector="Retail"
+         data-delivery="Design-Build, General Contracting"
+         data-loc="Kyiv, Ukraine">
+        <h2 style="margin-bottom:6px">Kyiv Central Department Store (Reconstruction)</h2>
+        <div class="muted" style="margin-bottom:8px">Retail • Design‑Build / GC • Kyiv, Ukraine</div>
+        <div class="muted">$135M • 410,000 GSF • Heritage</div>
+        <div style="margin-top:10px">
+          <span class="pill">Heritage</span><span class="pill">DB / GC</span><span class="pill">Retail</span>
+        </div>
+      </a>
 
-  <h2>About</h2>
-  <p>With over 20 years in the construction industry and 12+ years as a Project Manager, I specialize in full-cycle delivery across design-build, EPC, and general contracting models. My work spans fire protection, retail, mixed-use towers, heritage reconstruction, and more.</p>
+      <a class="card project"
+         href="projects/port-city.html"
+         data-name="Port City Shopping Mall"
+         data-sector="Retail / Mixed-Use"
+         data-delivery="Design-Build, General Contracting"
+         data-loc="Lutsk, Ukraine">
+        <h2 style="margin-bottom:6px">Port City Shopping Mall</h2>
+        <div class="muted" style="margin-bottom:8px">Retail / Mixed‑Use • Design‑Build / GC • Lutsk, Ukraine</div>
+        <div class="muted">$90M • 581,000 GSF • Enclosed Parking</div>
+        <div style="margin-top:10px">
+          <span class="pill">Retail</span><span class="pill">DB / GC</span><span class="pill">Mixed‑Use</span>
+        </div>
+      </a>
 
-  <div class="footer">
-    &copy; <span id="year"></span> Max Kober | Built with GitHub Pages
+      <a class="card project"
+         href="projects/nikolsky-shopping-centre.html"
+         data-name="Nikolsky Shopping Centre"
+         data-sector="Retail"
+         data-delivery="EPC"
+         data-loc="Kharkiv, Ukraine">
+        <h2 style="margin-bottom:6px">Nikolsky Shopping Centre</h2>
+        <div class="muted" style="margin-bottom:8px">Retail • EPC • Kharkiv, Ukraine</div>
+        <div class="muted">$65M • 1,130,000 GSF • PT Structure</div>
+        <div style="margin-top:10px">
+          <span class="pill">EPC</span><span class="pill">Retail</span><span class="pill">PT Concrete</span>
+        </div>
+      </a>
+
+      <a class="card project"
+         href="projects/alliance-privilege.html"
+         data-name="Alliance Privilege Tower"
+         data-sector="Hospitality / Residential"
+         data-delivery="Design-Build, CMAR (Owner-Led)"
+         data-loc="Batumi, Georgia">
+        <h2 style="margin-bottom:6px">Alliance Privilege Tower</h2>
+        <div class="muted" style="margin-bottom:8px">Hospitality / Residential • DB + CMAR • Batumi, Georgia</div>
+        <div class="muted">$100M • 890,000 GSF • 54‑storey</div>
+        <div style="margin-top:10px">
+          <span class="pill">DB + CMAR</span><span class="pill">Marriott</span><span class="pill">High‑Rise</span>
+        </div>
+      </a>
+
+      <a class="card project"
+         href="projects/oakridge-fire-protection.html"
+         data-name="Oakridge Centre – Fire Protection"
+         data-sector="Mixed-Use / Retail / Residential"
+         data-delivery="Design-Build, Stipulated Price"
+         data-loc="Vancouver, BC">
+        <h2 style="margin-bottom:6px">Oakridge Centre – Fire Protection</h2>
+        <div class="muted" style="margin-bottom:8px">Mixed‑Use • DB & Stipulated Price • Vancouver, BC</div>
+        <div class="muted">50+ packages • NFPA / AHJ • BIM</div>
+        <div style="margin-top:10px">
+          <span class="pill">Fire Protection</span><span class="pill">BIM</span><span class="pill">DB + Fixed‑Price</span>
+        </div>
+      </a>
+
+      <a class="card project"
+         href="projects/ubc-rec-centre-fire-protection.html"
+         data-name="UBC Recreation Centre – FP"
+         data-sector="Institutional / Recreation"
+         data-delivery="Design-Build, Stipulated Price"
+         data-loc="Vancouver, BC">
+        <h2 style="margin-bottom:6px">UBC Recreation Centre – Fire Protection</h2>
+        <div class="muted" style="margin-bottom:8px">Institutional • DB & Stipulated Price • Vancouver, BC</div>
+        <div class="muted">Estimates • Permitting • BIM</div>
+        <div style="margin-top:10px">
+          <span class="pill">Institutional</span><span class="pill">BIM</span><span class="pill">Fire Protection</span>
+        </div>
+      </a>
+
+      <a class="card project"
+         href="projects/beaty-biodiversity-fire-protection.html"
+         data-name="UBC Beaty Biodiversity – FP"
+         data-sector="Institutional / Museum"
+         data-delivery="Design-Build, Stipulated Price"
+         data-loc="Vancouver, BC">
+        <h2 style="margin-bottom:6px">UBC Beaty Biodiversity – Fire Protection</h2>
+        <div class="muted" style="margin-bottom:8px">Institutional / Museum • DB & Stipulated Price • Vancouver, BC</div>
+        <div class="muted">Sensitive Environments • Inspections</div>
+        <div style="margin-top:10px">
+          <span class="pill">Museum</span><span class="pill">Fire Protection</span><span class="pill">Permitting</span>
+        </div>
+      </a>
+
+      <a class="card project"
+         href="projects/harry-jerome-crc-fire-protection.html"
+         data-name="Harry Jerome CRC – FP"
+         data-sector="Institutional / Recreation"
+         data-delivery="Design-Build, Stipulated Price"
+         data-loc="North Vancouver, BC">
+        <h2 style="margin-bottom:6px">Harry Jerome CRC – Fire Protection</h2>
+        <div class="muted" style="margin-bottom:8px">Institutional • DB & Stipulated Price • North Vancouver, BC</div>
+        <div class="muted">CRs/COs • FRO • Occupancy</div>
+        <div style="margin-top:10px">
+          <span class="pill">Municipal</span><span class="pill">Fire Protection</span><span class="pill">Close‑out</span>
+        </div>
+      </a>
+    </div>
+
+    <footer style="margin-top:28px" class="muted">
+      © <span id="y"></span> Max Kober — Built with GitHub Pages
+    </footer>
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+    document.getElementById('y').textContent = new Date().getFullYear();
 
+    // Simple client-side filtering
+    const q = document.getElementById('q');
+    const cards = Array.from(document.querySelectorAll('.card.project'));
+    q.addEventListener('input', () => {
+      const term = q.value.trim().toLowerCase();
+      cards.forEach(card => {
+        const hay = (card.dataset.name + ' ' + card.dataset.sector + ' ' + card.dataset.delivery + ' ' + card.dataset.loc).toLowerCase();
+        card.style.display = hay.includes(term) ? '' : 'none';
+      });
+    });
+  </script>
 </body>
 </html>
-
