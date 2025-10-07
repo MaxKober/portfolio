@@ -83,5 +83,14 @@
 
     <footer>© 2025 Max Kober — <a href="../index.html">Back to portfolio</a></footer>
   </div>
+  <script>
+  // Disable right-click on all images
+  document.addEventListener('contextmenu', function (e) {
+    if (e.target.tagName === 'IMG') {
+      e.preventDefault();
+    }
+  });
+</script>
+
  </body>
 </html>
