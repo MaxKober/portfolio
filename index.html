@@ -32,7 +32,42 @@
         <p class="subtitle" style="margin:6px 0 0">Selected projects across Design‑Build, EPC, CMAR, and GC models (Canada & Eastern Europe).</p>
       </div>
       <div class="actions">
-        <a class="btn" href="assets/files/CV_MaksymKobylianskyi.pdf">Download CV</a>
+        <section class="card" id="cv-request">
+      <h2>Request My CV</h2>
+      <p class="muted">Please provide your name, company, and email address to receive a copy of my CV.</p>
+    
+      <form action="https://formspree.io/f/xdkwqkyr" method="POST" class="cv-form" style="margin-top:10px;">
+        <!-- Honeypot field (hidden from humans, bots will fill it) -->
+        <input type="text" name="_gotcha" style="display:none">
+    
+        <label>
+          Full Name
+          <input type="text" name="name" required placeholder="e.g., John Doe">
+        </label>
+    
+        <label>
+          Company Name
+          <input type="text" name="company" required placeholder="e.g., BuildSmart Ltd.">
+        </label>
+    
+        <label>
+          Email Address
+          <input type="email" name="_replyto" required placeholder="e.g., john@buildsmart.com">
+        </label>
+    
+        <!-- Optional: subject line you’ll see in your inbox -->
+        <input type="hidden" name="_subject" value="New CV Request from Portfolio">
+    
+        <button type="submit" class="button">Send Request</button>
+      </form>
+
+  <p id="form-status" class="muted" style="margin-top:10px;"></p>
+</section>
+
+
+        
+          
+        
         <a class="btn" href="https://www.linkedin.com/in/maksym-kobyliansky" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>
