@@ -184,6 +184,23 @@
       }
     });
   </script>
+  <script>
+    (function () {
+      const SKIP_KEY = 'mk_skip_counter';
+      const NAMESPACE = 'https://github.com/MaxKober/portfolio';
+      const KEY = 'index.html';
+    
+      // Skip if this device opted out
+      if (localStorage.getItem(SKIP_KEY) === '1') return;
+    
+      // Invisible page hit counter
+      fetch(`https://api.countapi.xyz/hit/${encodeURIComponent(NAMESPACE)}/${encodeURIComponent(KEY)}`)
+        .then(res => res.json())
+        .then(data => console.log("Homepage views:", data.value))
+        .catch(() => {});
+    })();
+  </script>
+
   </body>
 </html>
 
