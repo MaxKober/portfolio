@@ -6,12 +6,31 @@
   <title>Request CV</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
-    /* minimal local styles; rely on your style.css where possible */
-    .card { max-width: 720px; margin: 40px auto; padding: 18px; border-radius: 10px; background: #111; color: #fff; }
-    .muted { color: #ccc; }
+    .close-btn {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      font-size: 26px;
+      color: #ccc;
+      text-decoration: none;
+      cursor: pointer;
+      z-index: 1000;
+      transition: color 0.2s;
+    }
+    .close-btn:hover { color: #fff; }
+    .card {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 20px;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+    }
     .cv-form label { display:block; margin-bottom:10px; font-weight:500; }
     .cv-form input, .cv-form textarea {
-      width:100%; padding:8px; margin-top:4px; border-radius:6px; border:1px solid #444; background:#1a1a1a; color:#fff; resize:vertical; font-family:inherit;
+      width:100%; padding:8px; margin-top:4px;
+      border-radius:6px; border:1px solid #444;
+      background:#1a1a1a; color:#fff; resize:vertical; font-family:inherit;
     }
     .cv-form button { margin-top:12px; }
     .success { color:#8bc34a; margin-top:10px; }
@@ -19,37 +38,35 @@
   </style>
 </head>
 <body>
+  <!-- ✖ Close button -->
+  <a href="./index.html" class="close-btn" title="Close form and go back">×</a>
+
   <section class="card">
     <h1>Request My CV</h1>
     <p class="muted">Please provide your details and I’ll send my CV to your email.</p>
 
     <form action="https://formspree.io/f/xdkwqkyr" method="POST" class="cv-form" id="cv-form" novalidate>
-      <!-- Honeypot (hidden) -->
       <input type="text" name="_gotcha" style="display:none">
 
-      <label>
-        Full Name
+      <label>Full Name
         <input type="text" name="name" id="name" required placeholder="e.g., John Doe">
       </label>
 
-      <label>
-        Company Name
+      <label>Company Name
         <input type="text" name="company" id="company" required placeholder="e.g., BuildSmart Ltd.">
       </label>
 
-      <label>
-        Email Address
+      <label>Email Address
         <input type="email" name="_replyto" id="email" required placeholder="e.g., john@buildsmart.com">
       </label>
 
-      <label>
-        Comments / Job Description (optional)
+      <label>Comments / Job Description (optional)
         <textarea name="message" id="message" rows="4" placeholder="e.g., Please share your CV for our upcoming project."></textarea>
       </label>
 
       <input type="hidden" name="_subject" value="New CV Request from Portfolio">
 
-      <button type="submit" class="button" id="submit-btn">Submit request</button>
+      <button type="submit" class="button">Submit request</button>
       <p id="form-status" class="muted"></p>
     </form>
   </section>
@@ -57,53 +74,43 @@
   <script>
     const form = document.getElementById('cv-form');
     const statusEl = document.getElementById('form-status');
-    const submitBtn = document.getElementById('submit-btn');
+    const btn = form.querySelector('button');
 
     function validate() {
       statusEl.textContent = '';
-      const name = document.getElementById('name').value.trim();
-      const company = document.getElementById('company').value.trim();
-      const email = document.getElementById('email').value.trim();
-
-      if (!name) { statusEl.textContent = 'Please enter your full name.'; statusEl.className='error'; return false; }
-      if (!company) { statusEl.textContent = 'Please enter your company name.'; statusEl.className='error'; return false; }
-      if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) { statusEl.textContent = 'Please enter a valid email address.'; statusEl.className='error'; return false; }
+      const name = form.name.value.trim();
+      const company = form.company.value.trim();
+      const email = form._replyto.value.trim();
+      if (!name) return statusEl.textContent='Please enter your name.', false;
+      if (!company) return statusEl.textContent='Please enter your company name.', false;
+      if (!email.match(/^[^@\s]+@[^@\s]+\.[^@\s]+$/))
+        return statusEl.textContent='Please enter a valid email address.', false;
       return true;
     }
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-      if (!validate()) return;
-
+      if (!validate()) { statusEl.className='error'; return; }
       const data = new FormData(form);
-      if (data.get('_gotcha')) return; // honeypot trap
-
-      submitBtn.disabled = true;
+      if (data.get('_gotcha')) return;
+      btn.disabled = true;
 
       try {
         const res = await fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: { Accept: 'application/json' },
+          method: form.method, body: data,
+          headers: {Accept:'application/json'}
         });
-
         if (res.ok) {
           statusEl.textContent = 'Thank you! Your request has been sent. Redirecting...';
           statusEl.className = 'success';
           form.reset();
-
-          // Redirect back to homepage after 2.5s
-          setTimeout(() => { window.location.href = './index.html#cv-thanks'; }, 2500);
+          setTimeout(()=>window.location.href='./index.html#cv-thanks',2500);
         } else {
-          statusEl.textContent = 'Something went wrong. Please try again later.';
-          statusEl.className = 'error';
+          statusEl.textContent='Something went wrong. Please try again later.'; statusEl.className='error';
         }
       } catch {
-        statusEl.textContent = 'Network error. Please try again.';
-        statusEl.className = 'error';
-      } finally {
-        submitBtn.disabled = false;
-      }
+        statusEl.textContent='Network error. Please try again.'; statusEl.className='error';
+      } finally { btn.disabled=false; }
     });
   </script>
 </body>
