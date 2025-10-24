@@ -38,44 +38,54 @@
   </style>
 </head>
 <body>
-
-  <section class="card">
-    <section class="card">
+  <div class="wrapper">
+    <section class="card" style="position: relative; margin-top: 60px;">
+      <!-- Close button inside the form card -->
       <a href="./index.html" class="close-btn" title="Close form and go back">&#10005;</a>
 
-    <h1>Request My CV</h1>
-    <p class="muted">Please provide your details and I’ll send my CV to your email.</p>
+      <h1 class="title">Request My CV</h1>
+      <p class="muted">Please provide your details below to receive a copy of my CV.</p>
 
-    <form action="https://formspree.io/f/xdkwqkyr" method="POST" class="cv-form" id="cv-form" novalidate>
-      <input type="text" name="_gotcha" style="display:none">
+      <form action="https://formspree.io/f/xdkwqkyr" method="POST" class="cv-form" id="cv-form" novalidate style="margin-top: 20px;">
+        <!-- Honeypot (hidden from humans) -->
+        <input type="text" name="_gotcha" style="display:none">
 
-      <label>Full Name
-        <input type="text" name="name" id="name" required placeholder="e.g., John Doe">
-      </label>
+        <label>
+          Full Name
+          <input type="text" name="name" id="name" required placeholder="e.g., John Doe">
+        </label>
 
-      <label>Company Name
-        <input type="text" name="company" id="company" required placeholder="e.g., BuildSmart Ltd.">
-      </label>
+        <label>
+          Company Name
+          <input type="text" name="company" id="company" required placeholder="e.g., BuildSmart Ltd.">
+        </label>
 
-      <label>Email Address
-        <input type="email" name="_replyto" id="email" required placeholder="e.g., john@buildsmart.com">
-      </label>
+        <label>
+          Email Address
+          <input type="email" name="_replyto" id="email" required placeholder="e.g., john@buildsmart.com">
+        </label>
 
-      <label>Comments / Job Description (optional)
-        <textarea name="message" id="message" rows="4" placeholder="e.g., Please share your CV for our upcoming project."></textarea>
-      </label>
+        <label>
+          Comments / Job Description (optional)
+          <textarea name="message" id="message" rows="4" placeholder="e.g., Please share your CV for our upcoming project."></textarea>
+        </label>
 
-      <input type="hidden" name="_subject" value="New CV Request from Portfolio">
+        <input type="hidden" name="_subject" value="New CV Request from Portfolio">
 
-      <button type="submit" class="button">Submit request</button>
-      <p id="form-status" class="muted"></p>
-    </form>
-  </section>
+        <button type="submit" class="button" id="submit-btn">Submit request</button>
+        <p id="form-status" class="muted" style="margin-top:10px;"></p>
+      </form>
+    </section>
+
+    <footer style="margin-top: 40px;">
+      © 2025 Max Kober — <a href="./index.html">Back to portfolio</a>
+    </footer>
+  </div>
 
   <script>
     const form = document.getElementById('cv-form');
     const statusEl = document.getElementById('form-status');
-    const btn = form.querySelector('button');
+    const btn = document.getElementById('submit-btn');
 
     function validate() {
       statusEl.textContent = '';
@@ -115,4 +125,5 @@
     });
   </script>
 </body>
+
 </html>
