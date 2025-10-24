@@ -2,6 +2,9 @@
   --bg:#0b1630; --fg:#e9eefc; --accent:#ffd251; --muted:#8ea0c6; --card:#111d3d; --border:#2a3866;
 }
 
+/* Utilities */
+.muted { color: var(--muted); }
+
 /* Base */
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
