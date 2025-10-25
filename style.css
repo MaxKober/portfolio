@@ -142,3 +142,6 @@ footer{margin:28px 0 12px;color:var(--muted);font-size:13px}
   transition:color .2s ease, transform .2s ease;z-index:2
 }
 .close-btn:hover{color:var(--accent);transform:scale(1.15)}
+@media (max-width:700px){
+  iframe[loading="lazy"]{ height:180px; }
+}
