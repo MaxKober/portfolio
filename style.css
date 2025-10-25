@@ -65,7 +65,7 @@ header .crumbs a{color:var(--muted)}
 .grid {
   display: grid;
   grid-template-columns: 1.15fr .85fr;
-  column-gap: 24px;       /* horizontal spacing between Overview & right column */
+  column-gap: 16px;       /* horizontal spacing between Overview & right column */
   row-gap: 16px;          /* smaller vertical spacing (matches previous look) */
   align-items: start;
 }
