@@ -70,6 +70,21 @@ header .crumbs a{color:var(--muted)}
   align-items:start;
 }
 
+/* Ensure bottom alignment between both columns */
+.grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 20px; /* ensures equal spacing before gallery */
+}
+
+/* Force same outer margin after both left and right columns */
+.grid + .card {
+  margin-top: 20px; /* matches horizontal spacing visually */
+}
+
+
 /* Right column — stacked frames (desktop) */
 .side-stack{
   display:flex;
