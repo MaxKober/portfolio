@@ -18,7 +18,7 @@ html,body{
 }
 body{
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  background:var(--bg);color:var(--fg);line-height:1.65;
+  background:var(--bg); color:var(--fg); line-height:1.65;
 }
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -31,62 +31,63 @@ header .crumbs a{color:var(--muted)}
 
 /* Buttons */
 .btn{
-  display:inline-block;background:var(--accent);color:#0b0b0b;
-  padding:10px 14px;border-radius:10px;font-weight:600
+  display:inline-block; background:var(--accent); color:#0b0b0b;
+  padding:10px 14px; border-radius:10px; font-weight:600;
 }
 
 /* Hero */
 .hero{
   background:linear-gradient(180deg,rgba(255,210,81,.12),rgba(255,210,81,0));
-  border:1px solid var(--border);border-radius:16px;padding:18px;margin-bottom:16px
+  border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:16px;
 }
-.title{font-size:28px;font-weight:800;margin:0 0 6px}
-.subtitle{font-size:15px;color:var(--muted);margin:0}
+.title{font-size:28px; font-weight:800; margin:0 0 6px}
+.subtitle{font-size:15px; color:var(--muted); margin:0}
 
 /* Wrap-friendly subtitle (Safari-safe dots/links) */
 .subtitle--split{
-  display:flex;flex-wrap:wrap;gap:6px;align-items:baseline;
-  line-height:1.35;-webkit-font-smoothing:antialiased
+  display:flex; flex-wrap:wrap; gap:6px; align-items:baseline;
+  line-height:1.35; -webkit-font-smoothing:antialiased;
 }
 .subtitle--split span[aria-hidden="true"]{opacity:.85}
 .subtitle--split a{line-height:1.35}
 
 /* Tags / badges */
-.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
 .badge{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:6px 10px;border:1px solid var(--border);
-  border-radius:999px;background:#0d1b3f;font-size:13px;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border:1px solid var(--border);
+  border-radius:999px; background:#0d1b3f; font-size:13px;
   position:static; /* ensure normal flow everywhere */
 }
 
-/* Project grid */
-/* Main content grid */
-.grid {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  column-gap: 16px;       /* horizontal spacing between Overview & right column */
-  row-gap: 16px;          /* smaller vertical spacing (matches previous look) */
-  align-items: start;
+/* ===================================
+   MAIN CONTENT GRID (desktop)
+   =================================== */
+.grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:20px;                 /* equal horizontal & vertical gap */
+  align-items:start;
 }
 
-/* Right column — stacked cards */
-.side-stack {
-  display: grid;
-  gap: 14px;              /* tight, uniform gap between Project Facts / Virtual Tour / etc. */
+/* Right column — stacked frames (desktop) */
+.side-stack{
+  display:flex;
+  flex-direction:column;
+  gap:18px;                 /* visible, even gap between frames */
 }
 
 /* Cards */
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:16px}
+.card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px}
 
 /* Headings */
-h2{font-size:18px;margin:0 0 10px}
+h2{font-size:18px; margin:0 0 10px}
 
 /* Meta list */
-.meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.meta{display:grid; grid-template-columns:1fr 1fr; gap:10px}
 @media (max-width:600px){.meta{grid-template-columns:1fr}}
-.meta .item{padding:10px;border:1px dashed var(--border);border-radius:12px}
-.label{display:block;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.meta .item{padding:10px; border:1px dashed var(--border); border-radius:12px}
+.label{display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
 .value{font-weight:600}
 
 /* Prose */
@@ -94,49 +95,51 @@ h2{font-size:18px;margin:0 0 10px}
 ul{margin:0 0 0 18px}
 
 /* Gallery */
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.gallery img{width:100%;height:180px;object-fit:cover;border-radius:10px;border:1px solid var(--border)}
-@media (max-width:700px){.gallery{grid-template-columns:1fr 1fr} .gallery img{height:140px}}
+.gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+.gallery img{width:100%; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border)}
+@media (max-width:700px){
+  .gallery{grid-template-columns:1fr 1fr}
+  .gallery img{height:140px}
+}
 
 /* Footer */
-footer{margin:28px 0 12px;color:var(--muted);font-size:13px}
+footer{margin:28px 0 12px; color:var(--muted); font-size:13px}
 
 /* Index helpers */
-.index-list{list-style:none;padding:0;margin:0}
-.index-list li{background:var(--card);border:1px solid var(--border);border-radius:12px;margin:10px 0}
-.index-list a{display:block;padding:14px 16px}
+.index-list{list-style:none; padding:0; margin:0}
+.index-list li{background:var(--card); border:1px solid var(--border); border-radius:12px; margin:10px 0}
+.index-list a{display:block; padding:14px 16px}
 
 /* ------------------------------
    Inactive project overlay badge
-   (only if you use inactive cards)
    ------------------------------ */
-.project.inactive{position:relative;cursor:not-allowed;opacity:.6}
+.project.inactive{position:relative; cursor:not-allowed; opacity:.6}
 .project.inactive:hover{transform:none}
 .project.inactive > .badge{
-  position:absolute;top:10px;right:10px;background:#ffca28;color:#000;
-  font-size:12px;font-weight:600;padding:3px 8px;border-radius:8px;text-transform:uppercase;border:none
+  position:absolute; top:10px; right:10px; background:#ffca28; color:#000;
+  font-size:12px; font-weight:600; padding:3px 8px; border-radius:8px; text-transform:uppercase; border:none;
 }
 
 /* ------------------------------
    CV request page styles
    ------------------------------ */
-.cv-page .wrapper{max-width:1000px;margin:0 auto;padding:20px}
-.cv-page .card{position:relative;margin-top:60px}
+.cv-page .wrapper{max-width:1000px; margin:0 auto; padding:20px}
+.cv-page .card{position:relative; margin-top:60px}
 .cv-page .title{margin:0 0 6px}
 .cv-page .subtitle{margin:6px 0 0}
 
-.cv-form{display:grid;gap:12px;margin-top:18px}
-.cv-form label{display:block;font-weight:500;margin-bottom:2px}
+.cv-form{display:grid; gap:12px; margin-top:18px}
+.cv-form label{display:block; font-weight:500; margin-bottom:2px}
 
 .cv-form input,
 .cv-form textarea{
-  width:100%;padding:10px 12px;margin-top:4px;border-radius:10px;
-  border:1px solid var(--border);background:#0f1b3d;color:var(--fg);
-  font-family:inherit;line-height:1.4;resize:vertical
+  width:100%; padding:10px 12px; margin-top:4px; border-radius:10px;
+  border:1px solid var(--border); background:#0f1b3d; color:var(--fg);
+  font-family:inherit; line-height:1.4; resize:vertical;
 }
-.cv-form input::placeholder,.cv-form textarea::placeholder{color:var(--muted)}
-.cv-form input:focus-visible,.cv-form textarea:focus-visible{
-  outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)
+.cv-form input::placeholder, .cv-form textarea::placeholder{color:var(--muted)}
+.cv-form input:focus-visible, .cv-form textarea:focus-visible{
+  outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);
 }
 .cv-form .btn{margin-top:4px}
 .success{color:#8bc34a}
@@ -147,75 +150,55 @@ footer{margin:28px 0 12px;color:var(--muted);font-size:13px}
 .cv-form textarea:-webkit-autofill{
   -webkit-box-shadow:0 0 0px 1000px #0f1b3d inset;
   -webkit-text-fill-color:var(--fg);
-  transition:background-color 9999s ease-out 0s
+  transition:background-color 9999s ease-out 0s;
 }
 
 /* Close “×” inside card (if used) */
 .close-btn{
-  position:absolute;top:14px;right:16px;font-size:24px;
-  font-family:Arial,Helvetica,sans-serif;font-weight:600;line-height:1;
-  color:#f5f5f5;text-decoration:none;cursor:pointer;
-  transition:color .2s ease, transform .2s ease;z-index:2
+  position:absolute; top:14px; right:16px; font-size:24px;
+  font-family:Arial,Helvetica,sans-serif; font-weight:600; line-height:1;
+  color:#f5f5f5; text-decoration:none; cursor:pointer;
+  transition:color .2s ease, transform .2s ease; z-index:2;
 }
-.close-btn:hover{color:var(--accent);transform:scale(1.15)}
+.close-btn:hover{color:var(--accent); transform:scale(1.15)}
 
 /* Map height match on mobile */
 @media (max-width:700px){
   iframe[loading="lazy"]{ height:180px; }
 }
-/* --------------------------------
-   Mobile reordering: Project Facts first
-   -------------------------------- */
-@media (max-width: 900px) {
-  .grid {
-    display: flex;
-    flex-direction: column;
-  }
-  /* The card with class .prose (Overview) goes second */
-  .grid .card.prose {
-    order: 2;
-  }
-  /* The other .card (Project Facts) goes first */
-  .grid .card:not(.prose) {
-    order: 1;
-  }
-  .grid {
-  display: grid;
-  grid-template-columns: 1.15fr .85fr;
-  gap: 16px;              /* horizontal and vertical gap inside grid */
-  margin-bottom: 16px;    /* ✅ equal gap between grid and next section */
+
+/* ===================================
+   MOBILE (<=900px): single column
+   Right column (side-stack) first
+   =================================== */
+@media (max-width:900px){
+  .grid{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:20px !important;          /* match desktop rhythm */
+    column-gap:0 !important;
+    row-gap:20px !important;
+    margin-bottom:20px;           /* consistent gap before next section (e.g., Gallery) */
   }
 
-  /* --- Mobile: force single-column layout --- */
-@media (max-width: 900px) {
-  /* Make the whole section a vertical stack */
-  .grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px;                 /* vertical rhythm between blocks */
-    column-gap: 0 !important;  /* kill any leftover column gap */
-    row-gap: 16px !important;
-  }
-
-  /* Ensure children span full width */
   .grid > .card,
-  .grid > .side-stack {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;   /* prevents side-by-side overflow */
+  .grid > .side-stack{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
   }
 
-  /* Right column remains a vertical stack */
-  .side-stack {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px;                  /* same spacing between its cards */
-    margin: 0 !important;
+  .side-stack{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:18px !important;
+    margin:0 !important;
+    order:1;                      /* right column first on mobile */
   }
 
-  /* Overview should come after the right column (if desired) */
-  .side-stack { order: 1; }
-  .grid .card.prose { order: 2; }
-}
+  .grid .card.prose{ order:2; }   /* Overview second on mobile */
 
+  /* Header tweaks on narrow */
+  header{flex-direction:column; align-items:flex-start}
+  .title{font-size:24px}
 }
