@@ -256,5 +256,14 @@ footer{margin:28px 0 12px; color:var(--muted); font-size:13px}
   #design-intent { order: 5; }
   #responsibilities { order: 6; }
 }
+/* Equal gap beneath the two-column grid before Gallery */
+.grid {
+  margin-bottom: 20px; /* same as your .grid gap for visual parity */
+}
+
+/* If the next section after .grid is a card (Gallery), ensure it starts at the same distance */
+.grid + .card {
+  margin-top: 0;       /* override any stray inline margins */
+}
 
 }
