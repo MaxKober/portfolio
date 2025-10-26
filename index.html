@@ -1,192 +1,207 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Max Kober — Construction Project Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    /* homepage-specific tweaks on top of style.css */
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 18px}
-    .search{flex:1;min-width:220px}
-    .search input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:#0f1b3d;color:var(--fg)}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-    @media (max-width:980px){.cards{grid-template-columns:repeat(2,1fr)}}
-    @media (max-width:640px){.cards{grid-template-columns:1fr}}
-    .card.project{cursor:pointer;transition:.12s transform}
-    .card.project:hover{transform:translateY(-2px)}
-    .pill{display:inline-block;padding:4px 8px;border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted);margin-right:6px}
-    .muted{color:var(--muted)}
-    .header-row{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
-    .actions a{margin-left:8px}
-  </style>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="header-row">
-      <div>
-        <h1 class="title" style="margin:0">Construction Project Portfolio</h1>
-        <p class="subtitle" style="margin:6px 0 0">Selected projects across Design‑Build, EPC, CMAR, and GC models (Canada & Eastern Europe).</p>
-      </div>
-      <div class="actions">
-        <a class="btn" href="./cv-request.html" aria-label="Open CV request form">Request CV</a>
-        <a class="btn" href="https://www.linkedin.com/in/maksym-kobyliansky" target="_blank" rel="noopener">LinkedIn</a>
-      </div>
-    </div>
+:root{
+  --bg:#0b1630; --fg:#e9eefc; --accent:#ffd251; --muted:#8ea0c6; --card:#111d3d; --border:#2a3866;
+}
 
-    <div class="toolbar">
-      <div class="search">
-        <input id="q" type="search" placeholder="Search projects by name, sector, delivery model, or location…" aria-label="Search projects">
-      </div>
-    </div>
+/* Utilities */
+.muted { color: var(--muted); }
 
-    <div id="cards" class="cards">
-      <!-- Each project card uses data-* attributes for filtering -->
-      <a class="card project"
-         href="projects/kyiv-central-department-store.html"
-         data-name="Kyiv Central Department Store"
-         data-sector="Retail"
-         data-delivery="Design-Build, General Contracting"
-         data-loc="Kyiv, Ukraine">
-        <h2 style="margin-bottom:6px">Kyiv Central Department Store (Reconstruction)</h2>
-        <div class="muted" style="margin-bottom:8px">Retail • Design‑Build / GC • Kyiv, Ukraine</div>
-        <div class="muted">$135M • 410,000 GSF • Heritage</div>
-        <div style="margin-top:10px">
-          <span class="pill">Heritage</span><span class="pill">DB / GC</span><span class="pill">Retail</span>
-        </div>
-      </a>
+/* Base */
+*{box-sizing:border-box}
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  scroll-behavior:smooth;
+}
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  background:var(--bg); color:var(--fg); line-height:1.65;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
 
-      <!--   
-      <a class="card project"
-         href="projects/port-city.html"
-         data-name="Port City Shopping Mall"
-         data-sector="Retail / Mixed-Use"
-         data-delivery="Design-Build, General Contracting"
-         data-loc="Lutsk, Ukraine">
-        <h2 style="margin-bottom:6px">Port City Shopping Mall</h2>
-        <div class="muted" style="margin-bottom:8px">Retail / Mixed‑Use • Design‑Build / GC • Lutsk, Ukraine</div>
-        <div class="muted">$90M • 581,000 GSF • Enclosed Parking</div>
-        <div style="margin-top:10px">
-          <span class="pill">Retail</span><span class="pill">DB / GC</span><span class="pill">Mixed‑Use</span>
-        </div>
-      </a>
-      
-    
-      <a class="card project"
-         href="projects/nikolsky-shopping-centre.html"
-         data-name="Nikolsky Shopping Centre"
-         data-sector="Retail"
-         data-delivery="EPC"
-         data-loc="Kharkiv, Ukraine">
-        <h2 style="margin-bottom:6px">Nikolsky Shopping Centre</h2>
-        <div class="muted" style="margin-bottom:8px">Retail • EPC • Kharkiv, Ukraine</div>
-        <div class="muted">$65M • 1,130,000 GSF • PT Structure</div>
-        <div style="margin-top:10px">
-          <span class="pill">EPC</span><span class="pill">Retail</span><span class="pill">PT Concrete</span>
-        </div>
-      </a>
+/* Layout */
+.wrapper{max-width:1000px;margin:0 auto;padding:20px}
+header{display:flex;gap:12px;align-items:center;justify-content:space-between;margin-bottom:16px}
+header .crumbs{font-size:14px;color:var(--muted)}
+header .crumbs a{color:var(--muted)}
 
-      <a class="card project"
-         href="projects/alliance-privilege.html"
-         data-name="Alliance Privilege Tower"
-         data-sector="Hospitality / Residential"
-         data-delivery="Design-Build, CMAR (Owner-Led)"
-         data-loc="Batumi, Georgia">
-        <h2 style="margin-bottom:6px">Alliance Privilege Tower</h2>
-        <div class="muted" style="margin-bottom:8px">Hospitality / Residential • DB + CMAR • Batumi, Georgia</div>
-        <div class="muted">$100M • 890,000 GSF • 54‑storey</div>
-        <div style="margin-top:10px">
-          <span class="pill">DB + CMAR</span><span class="pill">Marriott</span><span class="pill">High‑Rise</span>
-        </div>
-      </a>
+/* Buttons */
+.btn{
+  display:inline-block; background:var(--accent); color:#0b0b0b;
+  padding:10px 14px; border-radius:10px; font-weight:600;
+}
 
-      <a class="card project"
-         href="projects/oakridge-fire-protection.html"
-         data-name="Oakridge Centre – Fire Protection"
-         data-sector="Mixed-Use / Retail / Residential"
-         data-delivery="Design-Build, Stipulated Price"
-         data-loc="Vancouver, BC">
-        <h2 style="margin-bottom:6px">Oakridge Centre – Fire Protection</h2>
-        <div class="muted" style="margin-bottom:8px">Mixed‑Use • DB & Stipulated Price • Vancouver, BC</div>
-        <div class="muted">50+ packages • NFPA / AHJ • BIM</div>
-        <div style="margin-top:10px">
-          <span class="pill">Fire Protection</span><span class="pill">BIM</span><span class="pill">DB + Fixed‑Price</span>
-        </div>
-      </a>
+/* Hero */
+.hero{
+  background:linear-gradient(180deg,rgba(255,210,81,.12),rgba(255,210,81,0));
+  border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:16px;
+}
+.title{font-size:28px; font-weight:800; margin:0 0 6px}
+.subtitle{font-size:15px; color:var(--muted); margin:0}
 
-      <a class="card project"
-         href="projects/ubc-rec-centre-fire-protection.html"
-         data-name="UBC Recreation Centre – FP"
-         data-sector="Institutional / Recreation"
-         data-delivery="Design-Build, Stipulated Price"
-         data-loc="Vancouver, BC">
-        <h2 style="margin-bottom:6px">UBC Recreation Centre – Fire Protection</h2>
-        <div class="muted" style="margin-bottom:8px">Institutional • DB & Stipulated Price • Vancouver, BC</div>
-        <div class="muted">Estimates • Permitting • BIM</div>
-        <div style="margin-top:10px">
-          <span class="pill">Institutional</span><span class="pill">BIM</span><span class="pill">Fire Protection</span>
-        </div>
-      </a>
+/* Wrap-friendly subtitle (Safari-safe dots/links) */
+.subtitle--split{
+  display:flex; flex-wrap:wrap; gap:6px; align-items:baseline;
+  line-height:1.35; -webkit-font-smoothing:antialiased;
+}
+.subtitle--split span[aria-hidden="true"]{opacity:.85}
+.subtitle--split a{line-height:1.35}
 
-      <a class="card project"
-         href="projects/beaty-biodiversity-fire-protection.html"
-         data-name="UBC Beaty Biodiversity – FP"
-         data-sector="Institutional / Museum"
-         data-delivery="Design-Build, Stipulated Price"
-         data-loc="Vancouver, BC">
-        <h2 style="margin-bottom:6px">UBC Beaty Biodiversity – Fire Protection</h2>
-        <div class="muted" style="margin-bottom:8px">Institutional / Museum • DB & Stipulated Price • Vancouver, BC</div>
-        <div class="muted">Sensitive Environments • Inspections</div>
-        <div style="margin-top:10px">
-          <span class="pill">Museum</span><span class="pill">Fire Protection</span><span class="pill">Permitting</span>
-        </div>
-      </a>
+/* Tags / badges */
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+.badge{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:6px 10px; border:1px solid var(--border);
+  border-radius:999px; background:#0d1b3f; font-size:13px;
+  position:static; /* ensure normal flow everywhere */
+}
 
-      <a class="card project"
-         href="projects/harry-jerome-crc-fire-protection.html"
-         data-name="Harry Jerome CRC – FP"
-         data-sector="Institutional / Recreation"
-         data-delivery="Design-Build, Stipulated Price"
-         data-loc="North Vancouver, BC">
-        <h2 style="margin-bottom:6px">Harry Jerome CRC – Fire Protection</h2>
-        <div class="muted" style="margin-bottom:8px">Institutional • DB & Stipulated Price • North Vancouver, BC</div>
-        <div class="muted">CRs/COs • FRO • Occupancy</div>
-        <div style="margin-top:10px">
-          <span class="pill">Municipal</span><span class="pill">Fire Protection</span><span class="pill">Close‑out</span>
-        </div>
-      </a>
-    </div>
-    -->
-    <footer style="margin-top:28px" class="muted">
-      © <span id="y"></span> Max Kober 
-    </footer>
-  </div>
+/* ===== Desktop: two-column grid with even gaps, equal space before Gallery ===== */
+.grid{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:20px;            /* equal horizontal & vertical gap inside grid */
+  align-items:start;
+  margin-bottom:20px;  /* equal space before the next section (Gallery) */
+}
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
+/* If the next section after .grid is a card (Gallery), ensure consistent start */
+.grid + .card{ margin-top:0; }
 
-    // Simple client-side filtering
-    const q = document.getElementById('q');
-    const cards = Array.from(document.querySelectorAll('.card.project'));
-    q.addEventListener('input', () => {
-      const term = q.value.trim().toLowerCase();
-      cards.forEach(card => {
-        const hay = (card.dataset.name + ' ' + card.dataset.sector + ' ' + card.dataset.delivery + ' ' + card.dataset.loc).toLowerCase();
-        card.style.display = hay.includes(term) ? '' : 'none';
-      });
-    });
-  </script>
-  <script>
-    document.addEventListener('contextmenu', function (e) {
-      if (e.target.tagName === 'IMG') {
-        e.preventDefault();
-      }
-    });
-  </script>
-    
-  </body>
-</html>
+/* Right column — stacked frames (desktop) */
+.side-stack{
+  display:flex;
+  flex-direction:column;
+  gap:18px;            /* even gap between right-column cards */
+}
 
+/* Cards */
+.card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px}
+
+/* Headings */
+h2{font-size:18px; margin:0 0 10px}
+
+/* Meta list */
+.meta{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+@media (max-width:600px){.meta{grid-template-columns:1fr}}
+.meta .item{padding:10px; border:1px dashed var(--border); border-radius:12px}
+.label{display:block; font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:.04em}
+.value{font-weight:600}
+
+/* Prose */
+.prose p{margin:0 0 10px}
+ul{margin:0 0 0 18px}
+
+/* Gallery */
+.gallery{display:grid; grid-template-columns:repeat(3,1fr); gap:8px}
+.gallery img{width:100%; height:180px; object-fit:cover; border-radius:10px; border:1px solid var(--border)}
+@media (max-width:700px){
+  .gallery{grid-template-columns:1fr 1fr}
+  .gallery img{height:140px}
+}
+
+/* Footer */
+footer{margin:28px 0 12px; color:var(--muted); font-size:13px}
+
+/* Index helpers */
+.index-list{list-style:none; padding:0; margin:0}
+.index-list li{background:var(--card); border:1px solid var(--border); border-radius:12px; margin:10px 0}
+.index-list a{display:block; padding:14px 16px}
+
+/* Inactive project overlay badge (if ever used) */
+.project.inactive{position:relative; cursor:not-allowed; opacity:.6}
+.project.inactive:hover{transform:none}
+.project.inactive > .badge{
+  position:absolute; top:10px; right:10px; background:#ffca28; color:#000;
+  font-size:12px; font-weight:600; padding:3px 8px; border-radius:8px; text-transform:uppercase; border:none;
+}
+
+/* ------------------------------
+   CV request page styles
+   ------------------------------ */
+.cv-page .wrapper{max-width:1000px; margin:0 auto; padding:20px}
+.cv-page .card{position:relative; margin-top:60px}
+.cv-page .title{margin:0 0 6px}
+.cv-page .subtitle{margin:6px 0 0}
+
+.cv-form{display:grid; gap:12px; margin-top:18px}
+.cv-form label{display:block; font-weight:500; margin-bottom:2px}
+
+.cv-form input,
+.cv-form textarea{
+  width:100%; padding:10px 12px; margin-top:4px; border-radius:10px;
+  border:1px solid var(--border); background:#0f1b3d; color:var(--fg);
+  font-family:inherit; line-height:1.4; resize:vertical;
+}
+.cv-form input::placeholder, .cv-form textarea::placeholder{color:var(--muted)}
+.cv-form input:focus-visible, .cv-form textarea:focus-visible{
+  outline:2px solid var(--accent); outline-offset:1px; border-color:var(--accent);
+}
+.cv-form .btn{margin-top:4px}
+.success{color:#8bc34a}
+.error{color:#ff6f61}
+
+/* Autofill color fix */
+.cv-form input:-webkit-autofill,
+.cv-form textarea:-webkit-autofill{
+  -webkit-box-shadow:0 0 0px 1000px #0f1b3d inset;
+  -webkit-text-fill-color:var(--fg);
+  transition:background-color 9999s ease-out 0s;
+}
+
+/* Close “×” inside card (if used) */
+.close-btn{
+  position:absolute; top:14px; right:16px; font-size:24px;
+  font-family:Arial,Helvetica,sans-serif; font-weight:600; line-height:1;
+  color:#f5f5f5; text-decoration:none; cursor:pointer;
+  transition:color .2s ease, transform .2s ease; z-index:2;
+}
+.close-btn:hover{color:var(--accent); transform:scale(1.15)}
+
+/* Map height match on mobile */
+@media (max-width:700px){
+  iframe[loading="lazy"]{ height:180px; }
+}
+
+/* ===== Mobile (<=900px): single column, interleaved order ===== */
+@media (max-width: 900px) {
+  .grid{
+    display:flex !important;
+    flex-direction:column !important;
+    gap:20px !important;
+    column-gap:0 !important;
+    row-gap:20px !important;
+    margin-bottom:20px;
+  }
+
+  /* collapse side-stack so children can interleave with Overview via order */
+  .side-stack { display: contents !important; }
+
+  /* full width safety */
+  .grid > .card,
+  .grid > .side-stack,
+  #facts, #virtual-tour, #additional-info, #design-intent, #responsibilities,
+  .grid .card.prose {
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+
+  /* Order on mobile:
+     1) Facts, 2) Virtual Tour, 3) Overview, 4) Additional Info,
+     5) Design Intent, 6) Responsibilities */
+  #facts { order: 1; }
+  #virtual-tour { order: 2; }
+  .grid .card.prose { order: 3; }       /* Overview */
+  #additional-info { order: 4; }
+  #design-intent { order: 5; }
+  #responsibilities { order: 6; }
+
+  /* Header tweaks */
+  header{flex-direction:column; align-items:flex-start}
+  .title{font-size:24px}
+}
