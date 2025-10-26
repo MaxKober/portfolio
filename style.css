@@ -201,4 +201,45 @@ footer{margin:28px 0 12px; color:var(--muted); font-size:13px}
   /* Header tweaks on narrow */
   header{flex-direction:column; align-items:flex-start}
   .title{font-size:24px}
+
+  /* ================================
+   Mobile interleave order (≤900px)
+   ================================ */
+@media (max-width: 900px) {
+  /* Make the whole section a vertical stack */
+  .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+    column-gap: 0 !important;
+    row-gap: 20px !important;
+  }
+
+  /* Key trick: collapse .side-stack so its children become flex items
+     alongside .card.prose — lets us interleave by order */
+  .side-stack {
+    display: contents !important;
+  }
+
+  /* Ensure items don’t try to sit side-by-side */
+  .grid > .card,
+  .grid > .side-stack,
+  #facts, #virtual-tour, #additional-info, #design-intent, #responsibilities,
+  .grid .card.prose {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  /* Mobile sequence:
+     1) Facts, 2) Virtual Tour, 3) Overview, 4) Additional Info,
+     5) Design Intent, 6) Responsibilities */
+  #facts { order: 1; }
+  #virtual-tour { order: 2; }
+  .grid .card.prose { order: 3; }          /* Overview */
+  #additional-info { order: 4; }
+  #design-intent { order: 5; }
+  #responsibilities { order: 6; }
+}
+
 }
