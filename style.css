@@ -186,4 +186,36 @@ footer{margin:28px 0 12px;color:var(--muted);font-size:13px}
   margin-bottom: 16px;    /* ✅ equal gap between grid and next section */
   }
 
+  /* --- Mobile: force single-column layout --- */
+@media (max-width: 900px) {
+  /* Make the whole section a vertical stack */
+  .grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;                 /* vertical rhythm between blocks */
+    column-gap: 0 !important;  /* kill any leftover column gap */
+    row-gap: 16px !important;
+  }
+
+  /* Ensure children span full width */
+  .grid > .card,
+  .grid > .side-stack {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;   /* prevents side-by-side overflow */
+  }
+
+  /* Right column remains a vertical stack */
+  .side-stack {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px;                  /* same spacing between its cards */
+    margin: 0 !important;
+  }
+
+  /* Overview should come after the right column (if desired) */
+  .side-stack { order: 1; }
+  .grid .card.prose { order: 2; }
+}
+
 }
